@@ -14,7 +14,7 @@ import (
 
 func Connect() {
 	// Database Config
-	clientOptions := options.Client().ApplyURI("mongodb://user:password@host:port/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
+	clientOptions := options.Client().ApplyURI("mongodb+srv://app:uqBtC5tXI3DpV3QE@cluster0-udtjd.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
 	client, err := mongo.NewClient(clientOptions)
 
 	//Set up a context required by mongo.Connect
@@ -30,7 +30,8 @@ func Connect() {
 	} else {
 		log.Println("Connected!")
 	}
-	db := client.Database("go_mongo")
-	controllers.TodoCollection(db)
+	db := client.Database("test")
+	controllers.UserCollection(db)
+	controllers.BoardCollection(db)
 	return
 }

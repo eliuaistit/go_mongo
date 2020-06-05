@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/cavdy-play/go_mongo/controllers"
+	"github.com/gin-gonic/gin"
 )
 
 func Routes(router *gin.Engine) {
@@ -14,6 +14,11 @@ func Routes(router *gin.Engine) {
 	router.GET("/todo/:todoId", controllers.GetSingleTodo)
 	router.PUT("/todo/:todoId", controllers.EditTodo)
 	router.DELETE("/todo/:todoId", controllers.DeleteTodo)
+
+	router.GET("/users", controllers.GetAllUsers)
+
+	router.GET("/boards", controllers.GetAllBoards)
+
 	router.NoRoute(notFound)
 }
 
